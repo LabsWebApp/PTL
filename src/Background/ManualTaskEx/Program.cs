@@ -1,31 +1,55 @@
-﻿using System.Diagnostics;
-using ManualTaskEx;
+﻿using ManualTaskEx;
 
 int SumNumber(object arg)
 {
     var number = (int)arg;
     var sum = 0;
-    var sw = Stopwatch.StartNew();
     for (var i = 0; i < number; i++)
     {
         sum += i;
-        Thread.Sleep(10);
+        Thread.Sleep(1);
     }
-    sw.Stop();
-    WriteLine($"\nDuration: {sw.ElapsedMilliseconds}");
     return sum;
 }
 
-var threadPoolWorker = new GetResultWorker<int>(SumNumber!);
-threadPoolWorker.Start(1000);
+var getResultWorker = new GetResultWorker<int>(SumNumber!);
+getResultWorker.Start(1000);
 
-while (threadPoolWorker.Completed == false)
+try
 {
-    Write("*");
-    Thread.Sleep(35);
+    void WriteChar(char @char, int frequency = 40)
+    {
+        Write(@char);
+        Thread.Sleep(frequency);
+        Write("\b");
+    }
+
+    CursorVisible = false;
+    ForegroundColor = ConsoleColor.Red;
+    Write("Подождите! Идут сложные вычисления - ");
+    while (!getResultWorker.Completed) 
+    {
+        WriteChar('\\');
+        if (getResultWorker.Completed) break;
+
+        WriteChar('|');
+        if (getResultWorker.Completed) break;
+
+        WriteChar('/'); ;
+        if (getResultWorker.Completed) break;
+
+        WriteChar('—');
+    } 
+}
+finally
+{
+    SetCursorPosition(0, CursorTop);
+    Write(new string(' ', BufferWidth));
+    SetCursorPosition(0, CursorTop);
+    ResetColor();
+    CursorVisible = true;
 }
 
-WriteLine();
-WriteLine($"Результат асинхронной операции = {threadPoolWorker.Result}");
+WriteLine($"Результат асинхронной операции = {getResultWorker.Result}");
 
-ReadKey();
+ReadLine();
