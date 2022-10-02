@@ -10,22 +10,26 @@ internal class VoidWorker
 
     public bool Success { get; private set; }
     public bool Completed { get; private set; }
+    public bool IsRunning { get; private set; }
     public Exception? Exception { get; private set; }
+
+    public void Start(object? state = default) =>
+        ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadExecution!), state);
 
     public void Wait()
     {
+        if (!IsRunning) throw new Exception("Action is not running.");
+
         while (Completed == false) Thread.Sleep(Tick);
 
         if (Exception != null) throw Exception;
     }
 
-    public void Start(object state = default) =>
-        ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadExecution!), state);
-
     private void ThreadExecution(object? state)
     {
         try
         {
+            IsRunning = true;
             _action.Invoke(state);
             Success = true;
         }
@@ -37,6 +41,7 @@ internal class VoidWorker
         finally
         {
             Completed = true;
+            IsRunning = false;
         }
     }
 }

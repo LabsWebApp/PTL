@@ -4,11 +4,11 @@
 // Кроме внешних переменных к лексическому окружению также относятся
 // параметры окружающего метода.
 
-var fn = Multiply(5);
+var func = Multiply(5);
 
-WriteLine(fn(5));   // 25
-WriteLine(fn(6));   // 30
-WriteLine(fn(7));   // 35
+WriteLine(func(5));   // 25
+WriteLine(func(6));   // 30
+WriteLine(func(7));   // 35
 
 Func<int, int> Multiply(int n)
 {
@@ -21,10 +21,10 @@ ReadKey();
 // всё через Лямбда
 var multiply = (int n) => (int m) => n * m;
 
-fn = multiply(5);
+func = multiply(5);
 
-WriteLine(fn(5));   // 25
-WriteLine(fn(6));   // 30
-WriteLine(fn(7));   // 35
+WriteLine(func(5));   // 25
+WriteLine(func(6));   // 30
+WriteLine(func(7));   // 35
 
 ReadKey();

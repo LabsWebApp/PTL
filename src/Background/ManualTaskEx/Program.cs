@@ -13,6 +13,7 @@ int SumNumber(object arg)
 }
 
 var getResultWorker = new GetResultWorker<int>(SumNumber!);
+
 getResultWorker.Start(1000);
 
 try

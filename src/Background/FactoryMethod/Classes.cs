@@ -3,7 +3,7 @@
 // строит кирпичные дома
 class BrickDeveloper : Developer
 {
-    public BrickDeveloper(string n) : base(n) { }
+    public BrickDeveloper(string name) : base(name) { }
 
     public override House Create() => new BrickHouse();
 }

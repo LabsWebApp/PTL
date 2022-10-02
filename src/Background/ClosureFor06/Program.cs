@@ -3,18 +3,18 @@
 //замыканий через лямбда-выражение
 
 // метод или внешняя функция
-var outerFn = () =>
+var outerFunc = () =>
 {
     int x = 1; // лексическое окружение - локальная переменная
 
     // локальная функция. ++x - операции с лексическим окружением
-    var innerFn = () => WriteLine(++x); 
-    return innerFn; // возвращаем локальную функцию
+    var innerFunc = () => WriteLine(++x); 
+    return innerFunc; // возвращаем локальную функцию
 };
 
-var fn = outerFn();   // fn = innerFn, так как outerFn возвращает innerFn
-// вызываем innerFn
-fn();   // 2
-fn();   // 3
-fn();   // 4
+var func = outerFunc();   // func = innerFunc, так как outerFunc возвращает innerFunc
+// вызываем innerFunc
+func();   // 2
+func();   // 3
+func();   // 4
 ReadKey();

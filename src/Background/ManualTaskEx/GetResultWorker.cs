@@ -13,13 +13,16 @@ internal class GetResultWorker<TResult>
 
     public bool Success { get; private set; }
     public bool Completed { get; private set; }
+    public bool IsRunning { get; private set; }
     public Exception? Exception { get; private set; }
 
     public TResult Result
     {
         get
         {
-            while (!Completed) Thread.Sleep(Tick);
+            if (!Completed &&!IsRunning) 
+                throw new Exception("Function is not running.");
+            while (!Completed) Thread.Sleep(1);
             return Success && Exception == null ? _result : throw Exception!;
         }
     }
@@ -31,6 +34,7 @@ internal class GetResultWorker<TResult>
     {
         try
         {
+            IsRunning = true;
             _result = _func.Invoke(state);
             Success = true;
         }
@@ -41,6 +45,7 @@ internal class GetResultWorker<TResult>
         }
         finally
         {
+            IsRunning = false;
             Completed = true;
         }
     }
