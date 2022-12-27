@@ -15,10 +15,10 @@ void Continuation(Task task)
 Task task = Task.Run(Method);
 // Если не указывать настроек для продолжения,
 // то по умолчанию TaskContinuationOptions.None :
-task.ContinueWith((t) => Continuation(t));
+task.ContinueWith(Continuation);
 
 // Указание настроек выполнения продолжения :
-//task.ContinueWith(Continuation, TaskContinuationOptions.ExecuteSynchronously);
+task.ContinueWith(Continuation, TaskContinuationOptions.ExecuteSynchronously);
 //task.ContinueWith(Continuation, TaskContinuationOptions.RunContinuationsAsynchronously);
 
 // Другие разновидности настроек продолжения:

@@ -1,12 +1,10 @@
 ﻿namespace ManualTaskEx;
-
+#pragma warning disable CS8601
 internal class GetResultWorker<TResult>
 {
     private const int Tick = 100;
     private readonly Func<object?, TResult> _func;
-#pragma warning disable CS8601
     private TResult _result = default;
-#pragma warning restore CS8601
 
     public GetResultWorker(Func<object?, TResult> func) =>
         _func = func ?? throw new ArgumentNullException(nameof(func));
@@ -22,7 +20,7 @@ internal class GetResultWorker<TResult>
         {
             if (!Completed &&!IsRunning) 
                 throw new Exception("Function is not running.");
-            while (!Completed) Thread.Sleep(1);
+            while (!Completed) Thread.Sleep(Tick);
             return Success && Exception == null ? _result : throw Exception!;
         }
     }

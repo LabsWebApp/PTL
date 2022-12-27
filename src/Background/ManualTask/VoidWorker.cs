@@ -14,7 +14,7 @@ internal class VoidWorker
     public Exception? Exception { get; private set; }
 
     public void Start(object? state = default) =>
-        ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadExecution!), state);
+        ThreadPool.QueueUserWorkItem(ThreadExecution, state);
 
     public void Wait()
     {

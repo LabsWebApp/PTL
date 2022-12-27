@@ -12,7 +12,7 @@ var outerFunc = () =>
     return innerFunc; // возвращаем локальную функцию
 };
 
-var func = outerFunc();   // func = innerFunc, так как outerFunc возвращает innerFunc
+var func = outerFunc(); // func = innerFunc, так как outerFunc возвращает innerFunc
 // вызываем innerFunc
 func();   // 2
 func();   // 3

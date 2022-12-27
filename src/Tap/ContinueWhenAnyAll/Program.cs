@@ -19,6 +19,9 @@ Task<double> t3 = taskFactory.StartNew(() => Calculate(3));
 Task<double> t4 = taskFactory.StartNew(() => Calculate(4));
 Task<double> t5 = taskFactory.StartNew(() => Calculate(5));
 
+taskFactory.ContinueWhenAny(new Task[] { t1, t2, t3, t4, t5 },
+    t => WriteLine($"Первый полученный результат - {((Task<double>)t).Result}"));
+
 taskFactory.ContinueWhenAll(new Task[] { t1, t2, t3, t4, t5 },
     completedTasks =>
     {

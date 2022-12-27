@@ -7,9 +7,9 @@ void OperationAsync(object arg)
     WriteLine($"Task #{Task.CurrentId} completed in the thread {Thread.CurrentThread.ManagedThreadId}.");
 }
 
-void Continuation(Task task)
+void Continuation(Task task) //Task<int> - не сможет!!!
 {
-    Write($"\nПродолжение #{Task.CurrentId} сработало в потоке {Thread.CurrentThread.ManagedThreadId}. ");
+    WriteLine($"\nПродолжение #{Task.CurrentId} сработало в потоке {Thread.CurrentThread.ManagedThreadId}. ");
     WriteLine($"Параметр задачи - {task.AsyncState}");
     WriteLine("Сразу после выполнения задачи.");
 }

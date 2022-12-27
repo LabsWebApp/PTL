@@ -50,7 +50,7 @@ internal class Program
             B = b
         };
 
-        Task<int> task = new Task<int>(Calc, box);
+        Task<int> task = new Task<int>(Calc!, box);
         task.Start();
 
         WriteLine($"Сумма чисел : {task.Result}");

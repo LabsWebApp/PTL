@@ -1,4 +1,9 @@
-﻿int GetIntResult() => 1;
+﻿int GetIntResult()
+{
+    Thread.Sleep(5000);
+    Console.WriteLine("Result is fix!");
+    return 1;
+}
 
 bool flag = false;
 
@@ -21,11 +26,13 @@ task1.Start();
 Console.WriteLine($"Результат асинхронной операции (Int) #1 - {task1.Result}");
 Thread.Sleep(1000);
 
-TaskFactory taskFactory = new TaskFactory();
-Task<bool> task2 = taskFactory.StartNew(new Func<bool>(GetBoolResult));
+//TaskFactory taskFactory = new TaskFactory();
+Task<bool> task2 = Task.Factory.StartNew(new Func<bool>(GetBoolResult));
 Console.WriteLine($"Результат асинхронной операции (Bool) #2 - {task2.Result}");
 
 Thread.Sleep(1000);
 
 Task<bool> task3 = Task.Run(new Func<bool>(GetBoolResult));
 Console.WriteLine($"Результат асинхронной операции (Bool) #3 - {task3.Result}");
+
+Console.ReadKey();

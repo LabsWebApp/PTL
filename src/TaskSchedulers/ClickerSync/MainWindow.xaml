@@ -1,0 +1,14 @@
+﻿<Window x:Class="ClickerSync.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SynchronizationContext" Height="820" Width="681.579">
+    <Grid Margin="0,0,2,0">
+        <TextBox x:Name="TxtContinuations" HorizontalAlignment="Left" Height="776" Margin="29,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="218" RenderTransformOrigin="2.054,0.516"/>
+        <Button x:Name="BtnStart" Content="Запуск" HorizontalAlignment="Left" Margin="274,175,0,0" VerticalAlignment="Top" Width="131" Height="39" Click="BtnStart_Click"/>
+        <TextBox x:Name="TxtThreadPool" HorizontalAlignment="Left" Height="776" Margin="428,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="218"/>
+        <Label x:Name="LblThreadId" Content="UI Thread Id - " HorizontalAlignment="Left" Margin="293,144,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

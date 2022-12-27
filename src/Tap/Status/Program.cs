@@ -9,9 +9,11 @@ Console.WriteLine($"{task.Status}");
 task.Start();
 
 Console.WriteLine($"{task.Status}");
+
 Thread.Sleep(1000);
 
 Console.WriteLine($"{task.Status}");
+
 Thread.Sleep(2000);
 
 Console.WriteLine($"{task.Status}");

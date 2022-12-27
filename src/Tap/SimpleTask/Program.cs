@@ -24,15 +24,15 @@ MainOutput();
 
 WriteLine("\n--------------");
 
-TaskFactory taskFactory = new TaskFactory();
-//TaskFactory taskFactory = Task.Factory;
+//TaskFactory taskFactory = new TaskFactory();
+TaskFactory taskFactory = Task.Factory;
 
 taskFactory.StartNew(threadOutput);
 MainOutput();
 
 WriteLine("\n--------------");
 
-Task.Run(threadOutput);
+task = Task.Run(threadOutput); // ~ Task.Factory.StartNew(threadOutput);
 MainOutput();
 
 WriteLine("\n--------------");

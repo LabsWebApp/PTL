@@ -21,10 +21,10 @@ WriteLine("Метод Main выполняется..");
 foreach (Task task in tasks)
     task.Start();
 //даём стартануть
-Thread.Sleep(500);
+Thread.Sleep(100);
 WriteLine("Метод Main ожидает..");
-foreach (Task task in tasks) task.Wait();
-//Task.WaitAll(tasks);
+//foreach (Task task in tasks) task.Wait();
+Task.WaitAll(tasks);
 //Task.WaitAny(tasks);
 
 WriteLine("Метод Main продолжает свою работу");
