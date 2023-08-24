@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_02_ClosureLambda", "Back
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_03_ClosureParam", "Background\ClosureParam\06_03_ClosureParam.csproj", "{FD03E42F-B492-47A5-82B1-7FFF3D6F9BEF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_01_ClosureFunkFor_01_06_007", "Background\ClosureLambda\06_01_ClosureFunkFor_01_06_007.csproj", "{07FC5CEA-40C8-4792-BA5D-AD62641F8688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_01_ClosureFunkFor_01_06", "Background\ClosureLambda\06_01_ClosureFunkFor_01_06.csproj", "{07FC5CEA-40C8-4792-BA5D-AD62641F8688}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_DeadlockFor_01_05", "Background\Deadlock\05_DeadlockFor_01_05.csproj", "{B22AC16B-686C-4C9A-A569-1DB7041C6D63}"
 EndProject
@@ -97,31 +97,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Exceptions", "01_Excepti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_ExceptionsInThreads", "Exceptions\ExceptionsInThreads\01_ExceptionsInThreads.csproj", "{B36D03A7-9FAD-4FB7-8AE7-662E5989E15F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_TaskExceptionHandling", "Exceptions\TaskExceptionHandling\02_TaskExceptionHandling.csproj", "{EB3F979D-19EF-4FED-B1A7-463FDAE9B36E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_TaskExceptionHandling", "Exceptions\TaskExceptionHandling\02_TaskExceptionHandling.csproj", "{EB3F979D-19EF-4FED-B1A7-463FDAE9B36E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_MultiExceptions", "Exceptions\MultiExceptions\03_MultiExceptions.csproj", "{C036588A-84DC-4159-B9B3-A5A65AF9DD3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_MultiExceptions", "Exceptions\MultiExceptions\03_MultiExceptions.csproj", "{C036588A-84DC-4159-B9B3-A5A65AF9DD3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwaitException", "Exceptions\AsyncAwaitException\AsyncAwaitException.csproj", "{336EA8FB-C7F9-47F2-9201-88F3E1A3C400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncAwaitException", "Exceptions\AsyncAwaitException\AsyncAwaitException.csproj", "{336EA8FB-C7F9-47F2-9201-88F3E1A3C400}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Cancelations", "02_Cancelations", "{F1BC19F2-BEA4-4ABB-998D-69208BDEDF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_Cancelations", "Cancelations\Cancelations\01_Cancelations.csproj", "{0445C54F-8B91-4C3D-90A2-7F450AD45506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_Cancelations", "Cancelations\Cancelations\01_Cancelations.csproj", "{0445C54F-8B91-4C3D-90A2-7F450AD45506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_MultiCancelations", "Cancelations\MultiCancelations\02_MultiCancelations.csproj", "{82D40502-941F-42B9-872D-01825482565E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_MultiCancelations", "Cancelations\MultiCancelations\02_MultiCancelations.csproj", "{82D40502-941F-42B9-872D-01825482565E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_01_ContinuationCancelations", "Cancelations\ContinuationCancelations\03_01_ContinuationCancelations.csproj", "{44FDAF71-6BA2-4C28-810D-650D6BD3826E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_01_ContinuationCancelations", "Cancelations\ContinuationCancelations\03_01_ContinuationCancelations.csproj", "{44FDAF71-6BA2-4C28-810D-650D6BD3826E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_02_ContinuationCancelations", "Cancelations\03_02_ContinuationCancelations\03_02_ContinuationCancelations.csproj", "{80B0EAD3-7FFA-4EAD-AE7E-CE335530DAF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_02_ContinuationCancelations", "Cancelations\03_02_ContinuationCancelations\03_02_ContinuationCancelations.csproj", "{80B0EAD3-7FFA-4EAD-AE7E-CE335530DAF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_03_ContinuationCancelations", "Cancelations\03_03_ContinuationCancelations\03_03_ContinuationCancelations.csproj", "{7FC039B2-A3E6-4A8D-855D-4C3FA4537B09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_03_ContinuationCancelations", "Cancelations\03_03_ContinuationCancelations\03_03_ContinuationCancelations.csproj", "{7FC039B2-A3E6-4A8D-855D-4C3FA4537B09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Deadlocks", "03_Deadlocks", "{53F1F44F-3ACF-46D4-AB15-D105D5284A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_Deadlocks", "Deadlocks\Deadlocks\01_Deadlocks.csproj", "{7295B888-B747-4F0B-9DB3-49363839F548}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_Deadlocks", "Deadlocks\Deadlocks\01_Deadlocks.csproj", "{7295B888-B747-4F0B-9DB3-49363839F548}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_Progress", "05_Progress", "{C2D57E62-D61F-4FF7-9E8C-D0F5C20F9EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progress", "Progress\Progress\Progress.csproj", "{1B05BF9E-5839-47C3-A10B-DB57F5AD8BEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progress", "Progress\Progress\Progress.csproj", "{1B05BF9E-5839-47C3-A10B-DB57F5AD8BEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

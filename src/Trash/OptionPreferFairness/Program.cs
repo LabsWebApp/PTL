@@ -1,14 +1,10 @@
 ﻿using System.Collections.Concurrent;
 
-ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
+var queue = new ConcurrentQueue<string>();
 
 Task.Factory.StartNew(() =>
 {
-    Task.Factory.StartNew(() => queue.Enqueue("1"));
-    Task.Factory.StartNew(() => queue.Enqueue("2"));
-    Task.Factory.StartNew(() => queue.Enqueue("3"));
-    Task.Factory.StartNew(() => queue.Enqueue("4"));
-    Task.Factory.StartNew(() => queue.Enqueue("5"));
+    // Попробовать засунуть всё в циклы
 
     Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 1"), 
         TaskCreationOptions.PreferFairness);
@@ -20,6 +16,27 @@ Task.Factory.StartNew(() =>
         TaskCreationOptions.PreferFairness);
     Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 5"),
         TaskCreationOptions.PreferFairness);
+    Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 6"), 
+        TaskCreationOptions.PreferFairness);
+    Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 7"),
+        TaskCreationOptions.PreferFairness);
+    Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 8"),
+        TaskCreationOptions.PreferFairness);
+    Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 9"),
+        TaskCreationOptions.PreferFairness);
+    Task.Factory.StartNew(() => queue.Enqueue("PreferFairness - 10"),
+        TaskCreationOptions.PreferFairness);
+
+    Task.Factory.StartNew(() => queue.Enqueue("1"));
+    Task.Factory.StartNew(() => queue.Enqueue("2"));
+    Task.Factory.StartNew(() => queue.Enqueue("3"));
+    Task.Factory.StartNew(() => queue.Enqueue("4"));
+    Task.Factory.StartNew(() => queue.Enqueue("5"));
+    Task.Factory.StartNew(() => queue.Enqueue("6"));
+    Task.Factory.StartNew(() => queue.Enqueue("7"));
+    Task.Factory.StartNew(() => queue.Enqueue("8"));
+    Task.Factory.StartNew(() => queue.Enqueue("9"));
+    Task.Factory.StartNew(() => queue.Enqueue("10"));
 });
 
 ReadKey();

@@ -1,57 +1,61 @@
-﻿using System.Diagnostics;
-using System.Numerics;
-using factorial;
-using factorial.QuickThreadPools;
+﻿// Ignore Spelling: Acc
 
+using BenchmarkDotNet.Running;
+using factorial;
+using factorial.Benchmark;
+using factorial.QuickThreads;
+
+// Почему нет расширения, 
 // Иллюстрация того, что c# не поддерживает оптимизацию хвостовой рекурсии (Tail Call):
 
-BigInteger Factorial(BigInteger i) => i <= BigInteger.One
-    ? BigInteger.One
-    : i * Factorial(i - BigInteger.One);
+//BigInteger Factorial(BigInteger i) => i <= BigInteger.One
+//    ? BigInteger.One
+//    : i * Factorial(i - BigInteger.One);
 
 
-BigInteger FactorialTail(BigInteger i)
-{
-    BigInteger FactorialAcc(BigInteger acc, BigInteger n) => n <= BigInteger.One
-        ? acc
-        : FactorialAcc(n * acc, n - BigInteger.One);
+//BigInteger FactorialTail(BigInteger i)
+//{
+//    BigInteger FactorialAcc(BigInteger acc, BigInteger n) => n <= BigInteger.One
+//        ? acc
+//        : FactorialAcc(n * acc, n - BigInteger.One);
 
-    return FactorialAcc(BigInteger.One, i);
-}
+//    return FactorialAcc(BigInteger.One, i);
+//}
 
 //BigInteger test = 4600;
-//WriteLine(Factorial(test));
 //WriteLine(FactorialTail(test));
+//WriteLine(Factorial(test));
 
 //ReadKey();
 
 Stopwatch stopwatch = new();
 
+IInstanceThreadPool? pool = null;
+
 while (true)
 {
-    using QuickThreadPoolTaskScheduler scheduler = new();
-
     WriteLine("Выберете метод вычисления факториала:");
-    int methods = 0;
-    WriteLine($"{++methods} - ThreadFactorial");
-    WriteLine($"{++methods} - ParallelForFactorial");
-    WriteLine($"{++methods} - ParallelForFactorial with QuickThreadPoolTaskScheduler");
-    WriteLine($"{++methods} - AsParallelFactorial");
-    WriteLine($"{++methods} - TasksFactorial");
-    WriteLine($"{++methods} - TasksFactorial with QuickThreadPoolTaskScheduler");
-    WriteLine($"{++methods} - AsParallelSimpleFactorial");
+
+    WriteLine("1 - ThreadFactorial");
+    WriteLine("2 - ParallelForFactorial");
+    WriteLine("3 - ParallelForFactorial with QuickThreadPoolTaskScheduler");
+    WriteLine("4 - AsParallelFactorial");
+    WriteLine("5 - TasksFactorial");
+    WriteLine("6 - TasksFactorial with QuickThreadPoolTaskScheduler");
+    WriteLine("7 - AsParallelSimpleFactorial");
+    WriteLine("8 - ParallelForFactorial with QuickThreadPoolTaskScheduler and Expression Tree (???БОМБА???)");
     WriteLine("любая клавиша - Factorial ('Esc' завершить работу)");
     
     var key = ReadKey();
     if (key.Key == ConsoleKey.Escape) break;
-    if (!int.TryParse(new[] { key.KeyChar }, out var mode) || mode < 1) mode = ++methods;
+    if (!int.TryParse(new[] { key.KeyChar }, out var mode) || mode < 1) mode = 0;
     Write("\b");
 
-    var processes = Environment.ProcessorCount;
-    if (mode < methods)
+    var works = Environment.ProcessorCount;
+    if (mode != 0)
     {
-        WriteLine($"Разбить решения на 1024 подзадачи нажмите: 'Y', по умолчанию ({processes}) любая клавиша.");
-        if (ReadKey().Key == ConsoleKey.Y) processes = 1024;
+        WriteLine($"Разбить решения на 1024 подзадачи нажмите: 'Y', по умолчанию ({works}) любая клавиша.");
+        if (ReadKey().Key == ConsoleKey.Y) works = 1024;
         Write("\b");
     }
 
@@ -66,13 +70,14 @@ while (true)
             5 => "TasksFactorial",
             6 => "TasksFactorial with QuickThreadPoolTaskScheduler",
             7 => "AsParallelSimpleFactorial",
+            8 => "ParallelForFactorial with QuickThreadPoolTaskScheduler and Expression Tree",
             _ => "Factorial"
         }}";
-    if (mode < 7) info += $"; processes = {processes}";
+    if (mode != 0) info += $"; works = {works}";
 
     WriteLine($"{info}\nВведите N: ");
     var nString = ReadLine();
-    if (!int.TryParse(nString, out var n))
+    if (!int.TryParse(nString?.Replace("_", string.Empty), out var n))
     {
         WriteLine("Error!");
         continue;
@@ -81,23 +86,45 @@ while (true)
     CursorVisible = false;
     SetCursorPosition(nString.TrimEnd().Length, GetCursorPosition().Top - 1);
 
+    MinimalTaskScheduler? scheduler = null;
+    if ((mode is 3 or 6 or 8) && (pool is null || pool.MaxConcurrencyLevel != works))
+    {
+        pool = new QuickThreadPool(works);
+        scheduler = new MinimalTaskScheduler(pool);
+    }
+
     stopwatch.Restart();
     var result = mode switch
     {
-        1 => n.ThreadFactorial(processes),
-        2 or 3 => n.ParallelForFactorial(scheduler, processes),
-        4 => n.AsParallelFactorial(processes: processes),
-        5 or 6 => n.TasksFactorial(scheduler, processes),
+        1 => n.ThreadFactorial(works),
+        2 or 3 => n.ParallelForFactorial(scheduler, works),
+        4 => n.AsParallelFactorial(works: works),
+        5 or 6 => n.TasksFactorial(scheduler, works),
         7 => n.AsParallelSimpleFactorial(),
+        8 => n.ParallelForFactorial(scheduler, works, true),
         _ => n.Factorial()
     };
     stopwatch.Stop();
+
     Beep();
 
-    Write($"! = {(n <= 100000 ? result.ToString() : result.GetByteCount() + " bytes")}\n");
-    WriteLine(info + $" ... выполнил расчёт за {stopwatch.Elapsed}");
+    Write($"! = {(n <= 100 ? result.ToString() : result.GetByteCount() + " bytes")}\n");
+    WriteLine(info + $"\n\t... выполнил расчёт за {stopwatch.Elapsed}");
 
     GC.Collect();
     WriteLine("*****");
     CursorVisible = true;
 }
+
+pool?.Dispose();
+
+//Clear();
+
+//CursorVisible = true;
+
+//WriteLine("Test");
+
+////BenchmarkRunner.Run<MultiplyBenchmark>();
+//BenchmarkRunner.Run<FactorialBenchmark>();
+
+//ReadKey();

@@ -13,7 +13,7 @@ void CharWriter(object arg)
 WriteLine("Для запуска нажмите любую клавишу");
 ReadKey();
 
-VoidWorker threadPoolWorker = new VoidWorker(new Action<object?>(CharWriter!));
+var threadPoolWorker = new VoidWorker(new Action<object?>(CharWriter!));
 threadPoolWorker.Start('*');
 
 for (var i = 0; i< 40; i++)
