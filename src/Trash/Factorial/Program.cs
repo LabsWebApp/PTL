@@ -89,7 +89,7 @@ while (true)
     MinimalTaskScheduler? scheduler = null;
     if ((mode is 3 or 6 or 8) && (pool is null || pool.MaxConcurrencyLevel != works))
     {
-        pool = new QuickThreadPool(works);
+        pool = new GptChatCorrectedThreadPool(works, ThreadPriority.Lowest);
         scheduler = new MinimalTaskScheduler(pool);
     }
 
@@ -118,13 +118,12 @@ while (true)
 
 pool?.Dispose();
 
-//Clear();
+Clear();
 
-//CursorVisible = true;
 
-//WriteLine("Test");
+WriteLine("Test");
 
-////BenchmarkRunner.Run<MultiplyBenchmark>();
-//BenchmarkRunner.Run<FactorialBenchmark>();
+//BenchmarkRunner.Run<MultiplyBenchmark>();
+BenchmarkRunner.Run<FactorialBenchmark>();
 
-//ReadKey();
+ReadKey();

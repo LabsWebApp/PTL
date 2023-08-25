@@ -5,17 +5,21 @@ public class QuickThreadLockPool : IInstanceThreadPool
     /// <summary>
     /// Количество потоков в пуле.
     /// </summary>
-    public int MaxConcurrencyLevel { get; init; }
+    public int MaxConcurrencyLevel { get; }
 
     /// <summary>
     /// Приоритет всех потоков, входящих в пул. 
     /// </summary>
-    public ThreadPriority Priority { get; init; }
+    public ThreadPriority Priority { get; }
 
     /// <summary>
     /// Очередь задач.
     /// </summary>
     private Action? _currentWork;
+
+    /// <summary>
+    /// объект блокировки
+    /// </summary>
     private readonly object _lock = new();
 
     /// <summary>
